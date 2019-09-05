@@ -1,0 +1,9 @@
+操作流程：1.先在dao接口中设置query操作方法，将其参数封装到xxxQuery中
+          2.编写接口Iquery,该接口是一种该规范，用来实现getQuery和getParams；
+                getQuery是用来返回拼接好的sql语句；getParams是用来返回传递的查询参数；
+          3.抽取函数，编写QueryTemplete，该函数实现Iquery接口；设置两个参数，params（list封装查询函数）和conditions（list封装查询条件），
+                在getQuery中，设置一个custQuery方法，该方法专门暴露给子类，用来添加查询信息的方法；判断点一个查询条件是否为where
+                设置一个addQuery方法，暴露给子类，让子类用于添加自身查询条件和参数
+          4.xxxQuery继承QueryTemplete，实现custQuery方法，
+          5.在impl中实现query方法；
+          6.编写query的servlet
